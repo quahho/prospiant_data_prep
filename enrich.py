@@ -221,28 +221,28 @@ def enrichSheets(uploaded_files) :
     for file in uploaded_files :
 
         # Try block for reading data in
-        try : 
+#         try : 
 
-            # Read data in from Report Summary sheet
-            df_summary = pd.read_excel(file, sheet_name = "Report Summary", header = None)
+        # Read data in from Report Summary sheet
+        df_summary = pd.read_excel(file, sheet_name = "Report Summary", header = None)
 
-            # Read data in from Campaign Delivery sheey
-            df_delivered = pd.read_excel(file, sheet_name = "Campaign Delivery")
+        # Read data in from Campaign Delivery sheey
+        df_delivered = pd.read_excel(file, sheet_name = "Campaign Delivery")
 
-            # Read data in from Campaign Delivery sheey
-            df_opened = pd.read_excel(file, sheet_name = "Opens")
+        # Read data in from Campaign Delivery sheey
+        df_opened = pd.read_excel(file, sheet_name = "Opens")
 
-            # Read data in from Campaign Delivery sheey
-            df_clicked = pd.read_excel(file, sheet_name = "Clicks")
+        # Read data in from Campaign Delivery sheey
+        df_clicked = pd.read_excel(file, sheet_name = "Clicks")
 
         # When there is error
-        except : 
+#         except : 
 
-            # Display error message
-            st.error('Error in getting data from the sheets in *{x}* file.'.format(x = file.name))
+#             # Display error message
+#             st.error('Error in getting data from the sheets in *{x}* file.'.format(x = file.name))
 
-            # Skip the file
-            continue
+#             # Skip the file
+#             continue
 
         # =======================================================================================================================
         # =======================================================================================================================
