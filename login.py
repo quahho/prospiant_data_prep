@@ -36,13 +36,28 @@ if 'failed_attempt' not in st.session_state:
 def checkCode() :
 
     # Set real password's hash
-    hash = b'$2b$12$ZeHtfYRuDZMwjkCbJWwe7enHtBAOAUnK1O2w/ZxLEK9w6to0TEVhm'
+    hash_list = [
+        b'$2b$12$ZeHtfYRuDZMwjkCbJWwe7enHtBAOAUnK1O2w/ZxLEK9w6to0TEVhm',
+        b'$2b$12$HcmMrhPEfp1d7lBzRslPUuL3qERDaS/5TxlG/MNAhaKIKsTYQzBxS'
+    ]
 
     # Encode the input text
     encoded_text_input = st.session_state['text_input'].encode('utf-8')
 
-    # Compare encoded input text with hash
-    matched = bcrypt.checkpw(encoded_text_input, hash)
+    # Initialize match variable
+    matched = False
+
+    # Loop through the hash list
+    for hash in hash_list :
+
+        # Compare encoded input text with hash
+        matched = bcrypt.checkpw(encoded_text_input, hash)
+
+        # When found a match
+        if matched :
+
+            # Stop loop
+            break
 
     # Set path for post checking action
     if matched :
@@ -72,7 +87,7 @@ def showLoginPage() :
     with content :
     
         # Set logo
-        st.image('prospiant-logo-modified.png', use_column_width = 'always')
+        st.image('prospiant-logo.png', use_column_width = 'always')
 
         # Set the inner content alignment
         inner_left_space, inner_content, inner_right_space = st.columns([1, 3, 1])
@@ -104,6 +119,7 @@ def showLoginPage() :
                 
                 # Display error message
                 st.error('Invalid code, try again.')
+
 
     # Vertically centre the content of the page 
     st.write(
